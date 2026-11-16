@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pet Sphere</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #e8f5f2;
+            text-align: center;
+        }
+
+        .container {
+            background-color: white;
+            width: 350px;
+            margin: 40px auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h1 {
+            color: #168b78;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #168b78;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🐾 Pet Sphere</h1>
+    <h3>Pet Registration Form</h3>
+
+    <form onsubmit="processForm(event)">
+
+        <input type="text" id="owner"
+        placeholder="Enter Owner Name">
+
+        <input type="text" id="pet"
+        placeholder="Enter Pet Name">
+
+        <input type="text" id="age"
+        placeholder="Enter Pet Age">
+
+        <input type="text" id="phone"
+        placeholder="Enter Phone Number">
+
+        <select id="type">
+            <option value="">Select Pet Type</option>
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+            <option value="Rabbit">Rabbit</option>
+            <option value="Bird">Bird</option>
+        </select>
+
+        <br><br>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <h3 id="result"></h3>
+
+</div>
+
+<script>
+
+function processForm(event) {
+
+    event.preventDefault();
+
+    // Get form values
+    let owner = document.getElementById("owner").value.trim();
+    let pet = document.getElementById("pet").value.trim();
+    let age = document.getElementById("age").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let type = document.getElementById("type").value;
+
+    // Check empty boxes
+    if (owner == "" || pet == "" ||
+        age == "" || phone == "" || type == "") {
+
+        document.getElementById("result").innerHTML =
+        "Please fill all the fields!";
+
+    }
+
+    // Only numbers validation
+    else if (!/^[0-9]+$/.test(age) ||
+             !/^[0-9]{10}$/.test(phone)) {
+
+        document.getElementById("result").innerHTML =
+        "Enter valid age and 10-digit phone number!";
+
+    }
+
+    // If all details are correct
+    else {
+
+        document.getElementById("result").innerHTML =
+        "Registration Successful!<br><br>" +
+        "Owner: " + owner + "<br>" +
+        "Pet Name: " + pet + "<br>" +
+        "Pet Age: " + age + "<br>" +
+        "Phone: " + phone + "<br>" +
+        "Pet Type: " + type;
+    }
+
+}
+
+</script>
+
+</body>
+</html>
